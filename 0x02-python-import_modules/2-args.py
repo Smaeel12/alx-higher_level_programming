@@ -2,7 +2,6 @@
 from sys import argv
 if __name__ == "__main__":
     num_args = len(argv)
-    print(num_args)
     if num_args == 1:
         str = " arguments."
     elif num_args == 2:
