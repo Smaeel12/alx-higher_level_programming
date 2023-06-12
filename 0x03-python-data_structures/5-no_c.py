@@ -8,3 +8,5 @@ def no_c(my_string):
                 List.remove(idx)
         new_str = "".join(List)
         return new_str
+    else:
+        return None
