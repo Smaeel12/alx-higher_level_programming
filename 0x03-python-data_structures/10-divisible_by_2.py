@@ -1,5 +1,7 @@
 #!/usr/bin/python3
 def divisible_by_2(my_list=[]):
+    if not my_list:
+        return None
     new_list = my_list.copy()
     for idx in my_list:
         if idx % 2 == 0:
