@@ -3,7 +3,7 @@ def divisible_by_2(my_list=[]):
     if my_list is not None and len(my_list) != 0:
         new_list = my_list.copy()
         for idx in range(len(my_list)):
-            if idx % 2 == 0:
+            if my_list[idx] % 2 == 0:
                 new_list[idx] = True
             else:
                 new_list[idx] = False
