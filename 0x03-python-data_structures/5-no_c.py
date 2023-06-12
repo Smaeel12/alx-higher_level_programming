@@ -2,9 +2,8 @@
 def no_c(my_string):
     if my_string:
         List = list(my_string)
-        if 'c' in List:
-            List.remove('c')
-        if 'C' in List:
-            List.remove('C')
+        for idx in List:
+            if idx == 'c' or idx == 'C':
+                List.remove(idx)
         my_string = "".join(List)
         return my_string
