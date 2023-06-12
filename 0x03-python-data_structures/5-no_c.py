@@ -6,5 +6,5 @@ def no_c(my_string):
         List.remove('c')
     if 'C' in List:
         List.remove('C')
-    new_string = "".join(List)
-    return new_string
+    my_string = "".join(List)
+    return my_string
