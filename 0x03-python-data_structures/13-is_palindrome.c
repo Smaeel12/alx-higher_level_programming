@@ -10,7 +10,7 @@
 int is_palindrome(listint_t **head)
 {
 	int size = 0, i;
-	int num_arr[20];
+	int num_arr[128];
 	listint_t *current = *head;
 
 	if (current == NULL)
@@ -24,7 +24,11 @@ int is_palindrome(listint_t **head)
 	for (i = 0; i != size; i++, size--)
 	{
 		if (num_arr[i] != num_arr[size - 1])
+		{
+			free(current);
 			return (0);
+		}
 	}
+	free(current);
 	return (1);
 }
