@@ -23,14 +23,14 @@ class Square:
     @property
     def size(self):
         '''
-        to retrieve the private size of the square
+        Retrieves the size of the square.
         '''
         return self._Square__size
 
     @size.setter
     def size(self, value):
         '''
-        to set the private size of the square
+        Sets the size of the square.
         '''
         if type(value) != int:
             raise TypeError("size must be an integer")
@@ -39,18 +39,18 @@ class Square:
         self._Square__size = value
 
     @property
-    def Position(self):
+    def position(self):
         '''
-        to retrieve the private position of the square
+        Retrieves the position of the square.
         '''
         return self._Square__position
 
-    @size.setter
+    @position.setter
     def position(self, value):
         '''
-        to set the private position of the square
+        Sets the position of the square.
         '''
-        if type(position) != tuple or len(position) != 2:
+        if type(value) != tuple or len(value) != 2:
             raise TypeError("position must be a tuple of 2 positive integers")
         self._Square__position = value
 
@@ -66,13 +66,13 @@ class Square:
 
     def area(self):
         '''
-        Method that return the current square area
+        Calculates and returns the area of the square.
         '''
         return self._Square__size * self._Square__size
 
     def my_print(self):
         '''
-        prints in stdout the square with the character #
+        Prints the square using '#' character.
         '''
         if self._Square__size == 0:
             print()
