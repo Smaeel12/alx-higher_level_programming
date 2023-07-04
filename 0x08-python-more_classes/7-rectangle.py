@@ -4,6 +4,8 @@
 
 class Rectangle:
     """A class representing a rectangle."""
+    __width = None
+    __height = None
     number_of_instances = 0
     print_symbol = "#"
 
