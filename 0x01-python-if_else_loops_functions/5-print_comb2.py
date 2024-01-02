@@ -5,6 +5,6 @@
 #   print(f'{i:0>2d}', end=', ')
 
 for i in range(99):
-    print(f'{i:0>2d}', end=', ')
+    print('{:0>2d}'.format(i), end=', ')
 else:
     print('99')
