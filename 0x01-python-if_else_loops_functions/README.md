@@ -11,3 +11,14 @@ ___
 
 > In either kind of loop, the else clause is not executed if the loop was terminated by a break.
 
+**3-print_alphabt.py**
+```sh
+print('{:c}'.format(i if i != 101 and i != 113 else 0), end='')
+```
+
+**5-print_comb2.py**
+```sh
+for i in range(100):
+	end = ', ' if i != 99 else '\n'
+	print(f'{i:0>2d}', end=', ')  
+```
