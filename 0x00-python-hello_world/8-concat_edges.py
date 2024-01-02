@@ -1,8 +1,5 @@
 #!/usr/bin/python3
 str = "Python is an interpreted, interactive, object-oriented programming\
  language that combines remarkable power with very clear syntax"
-str = " ".join(
-        [str[str.index('object'):str.index('programming')+len('programming')],
-            str[str.index('with'):str.index('with')+len('with')],
-            str[:6]])
+str = f'{str[39:66]:s} {str[107:111]:s} {str[:6]:s}'
 print(str)
