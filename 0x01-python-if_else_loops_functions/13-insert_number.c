@@ -1,5 +1,5 @@
-#include <stddef.h>
 #include <stdlib.h>
+#include <stddef.h>
 #include "lists.h"
 /**
  * insert_node - a function in C that inserts a number into
@@ -24,11 +24,19 @@ listint_t *insert_node(listint_t **head, int number)
 	else
 	{
 		/* find the correct node */
-		while (current_node->next != NULL && current_node->next->n < number)
-			current_node = current_node->next;
-		next_node = current_node->next;
-		current_node->next = new_node;
-		new_node->next = next_node;
+		if (current_node->n > number)
+		{
+			new_node->next = current_node;
+			*head = new_node;
+		}
+		else
+		{
+			while (current_node->next != NULL && current_node->next->n < number)
+				current_node = current_node->next;
+			next_node = current_node->next;
+			current_node->next = new_node;
+			new_node->next = next_node;
+		}
 	}
 	return (new_node);
 }
