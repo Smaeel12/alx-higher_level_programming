@@ -3,19 +3,6 @@
 #include <stdlib.h>
 #include "lists.h"
 /**
- * lenght_calculate - calculate the lenght of an array
- * @array: an pointer to an array
- * Return: the lenght of the array
- */
-int lenght_calculate(int *array)
-{
-	int lenght = 0;
-
-	while (array[lenght] != '\0')
-		lenght += 1;
-	return (lenght);
-}
-/**
  * is_palindrome - function in C that checks
  * if a singly linked list is a palindrome.
  * @head: singly linked list node structure
@@ -25,26 +12,40 @@ int lenght_calculate(int *array)
 int is_palindrome(listint_t **head)
 {
 	listint_t *current;
-	int i, lenght;
-	int array[1024];
+	int i, lenght, size = 1024;
+	int *array;
 
 	if (*head == NULL || (*head)->next == NULL)
 		return (1);
 
 	current = *head;
+	array = malloc(size * sizeof(int));
+	if (array == NULL)
+		return (-1);
 	for (i = 0; current != NULL; i++)
 	{
 		array[i] = current->n;
+		if (i == 1024)
+		{
+			size = size + 1024;
+			array = realloc(array, size * sizeof(int));
+			if (array == NULL)
+			{
+				free(array);
+				return (-1);
+			}
+		}
 		current = current->next;
 	}
-	array[i] = '\0';
-	lenght = lenght_calculate(array);
-	if (lenght % 2 != 0)
-		return (0);
-	for (i = 0; i < lenght / 2; i++)
+	lenght = i - 1;
+	for (i = 0; i <= lenght; i++, lenght--)
 	{
-		if (array[i] != array[lenght - i - 1])
+		if (array[i] != array[lenght])
+		{
+			free(array);
 			return (0);
+		}
 	}
+	free(array);
 	return (1);
 }
