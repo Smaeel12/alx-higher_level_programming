@@ -7,11 +7,14 @@ def roman_to_int(roman_string):
                 'C': 100, 'D': 500, 'M': 1000}
         prev_value = 0
         for c in roman_string[::-1]:
-            current_value = roman_dict[c]
-            if current_value >= prev_value:
-                number += current_value
+            if roman_dict.get(c):
+                current_value = roman_dict[c]
+                if current_value >= prev_value:
+                    number += current_value
+                else:
+                    number -= current_value
+                prev_value = current_value
             else:
-                number -= current_value
-            prev_value = current_value
+                return None
         return number
     return None
