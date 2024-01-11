@@ -15,6 +15,6 @@ def roman_to_int(roman_string):
                     number -= current_value
                 prev_value = current_value
             else:
-                return None
+                return 0
         return number
-    return None
+    return 0
