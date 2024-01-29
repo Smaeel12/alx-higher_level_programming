@@ -22,19 +22,29 @@ class Rectangle:
         """int: width proprety
         set the width using the given value
         """
-        return self.__height
+        return self.__width
 
     @property
     def height(self):
         """int: height proprety
         set the height using the given value
         """
-        return self.__width
+        return self.__height
 
     @width.setter
     def width(self, value):
-        self.__width = value
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        elif value < 0:
+            raise ValueError("width must be >= 0")
+        else:
+            self.__width = value
 
     @height.setter
     def height(self, value):
-        self.__height = value
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
+        elif value < 0:
+            raise ValueError("height must be >= 0")
+        else:
+            self.__height = value
