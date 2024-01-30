@@ -12,10 +12,14 @@ class Rectangle:
     Attributes:
         height(int): Width private instance attribute
         width(int): Height private instance attribute
+        number_of_instances(int): Public class attribute
+        print_symbol(int): Public class attribute used
+            as symbol for string representation
     """
+
     def __init__(self, width=0, height=0):
-        self.__height = height
-        self.__width = width
+        self.width = width
+        self.height = height
 
     def __str__(self):
         """ method to print the rectangle with the character #
@@ -34,32 +38,50 @@ class Rectangle:
     @property
     def width(self):
         """int: width proprety
-        set the width using to the given value
         """
-        return self.__height
+        return self.__width
 
     @property
     def height(self):
         """int: height proprety
-        set the height using to the given value
         """
-        return self.__width
+        return self.__height
 
     @width.setter
     def width(self, value):
+        """ Set the height using the given value
+
+        Attributes:
+            value(int): The width of the rectangle
+
+        Raises:
+            TypeError: If width is not an integer
+            ValueError: If width is less than 0
+        """
         if type(value) is not int:
             raise TypeError("width must be an integer")
         elif value < 0:
             raise ValueError("width must be >= 0")
-        self.__width = value
+        else:
+            self.__width = value
 
     @height.setter
     def height(self, value):
+        """ Set the width using the given value
+
+        Attributes:
+            value(int): The height of the rectangle
+
+        Raises:
+            TypeError: If height is not an integer
+            ValueError: If height is less than 0
+        """
         if type(value) is not int:
             raise TypeError("height must be an integer")
         elif value < 0:
             raise ValueError("height must be >= 0")
-        self.__height = value
+        else:
+            self.__height = value
 
     def area(self):
         """ Public instance method that returns the rectangle area

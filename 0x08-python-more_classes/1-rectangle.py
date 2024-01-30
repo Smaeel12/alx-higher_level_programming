@@ -12,10 +12,14 @@ class Rectangle:
     Attributes:
         height(int): Width private instance attribute
         width(int): Height private instance attribute
+        number_of_instances(int): Public class attribute
+        print_symbol(int): Public class attribute used
+            as symbol for string representation
     """
+
     def __init__(self, width=0, height=0):
-        self.height = height
         self.width = width
+        self.height = height
 
     @property
     def width(self):

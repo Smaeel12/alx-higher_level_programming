@@ -21,8 +21,8 @@ class Rectangle:
     print_symbol = "#"
 
     def __init__(self, width=0, height=0):
-        self.__height = height
-        self.__width = width
+        self.width = width
+        self.height = height
         Rectangle.number_of_instances += 1
 
     def __str__(self):
@@ -31,7 +31,7 @@ class Rectangle:
             str: empty string if width or height is equal to 0
                 otherwise print the rectangle with the character #
         """
-        if self.__height != 0 or self.__width != 0:
+        if self.__height != 0 and self.__width != 0:
             for c in range(self.__height):
                 for r in range(self.__width):
                     print(self.print_symbol, end='')
@@ -56,24 +56,50 @@ class Rectangle:
     @property
     def width(self):
         """int: width proprety
-        set the width using to the given value
         """
-        return self.__height
+        return self.__width
 
     @property
     def height(self):
         """int: height proprety
-        set the height using to the given value
         """
-        return self.__width
+        return self.__height
 
     @width.setter
     def width(self, value):
-        self.__width = value
+        """ Set the height using the given value
+
+        Attributes:
+            value(int): The width of the rectangle
+
+        Raises:
+            TypeError: If width is not an integer
+            ValueError: If width is less than 0
+        """
+        if type(value) is not int:
+            raise TypeError("width must be an integer")
+        elif value < 0:
+            raise ValueError("width must be >= 0")
+        else:
+            self.__width = value
 
     @height.setter
     def height(self, value):
-        self.__height = value
+        """ Set the width using the given value
+
+        Attributes:
+            value(int): The height of the rectangle
+
+        Raises:
+            TypeError: If height is not an integer
+            ValueError: If height is less than 0
+        """
+        if type(value) is not int:
+            raise TypeError("height must be an integer")
+        elif value < 0:
+            raise ValueError("height must be >= 0")
+        else:
+            self.__height = value
 
     def area(self):
         """ Public instance method that returns the rectangle area
