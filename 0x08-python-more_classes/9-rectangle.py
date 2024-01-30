@@ -58,32 +58,22 @@ class Rectangle:
         """int: width proprety
         set the width using to the given value
         """
-        return self.__height
+        return self.__width
 
     @property
     def height(self):
         """int: height proprety
         set the height using to the given value
         """
-        return self.__width
+        return self.__height
 
     @width.setter
     def width(self, value):
-        if type(value) is not int:
-            raise TypeError("height must be an integer")
-        elif value < 0:
-            raise ValueError("height must be >= 0")
-        else:
-            self.__width = value
+        self.__width = value
 
     @height.setter
     def height(self, value):
-        if type(value) is not int:
-            raise TypeError("height must be an integer")
-        elif value < 0:
-            raise ValueError("height must be >= 0")
-        else:
-            self.__width = value
+        self.__height = value
 
     def area(self):
         """ Public instance method that returns the rectangle area
@@ -104,26 +94,13 @@ class Rectangle:
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
-        """Method to compare 2 rectangles
-
-        Attributes:
-            rect_1 (:obj: Rectangle): Rectangle instance
-            rect_2 (:obj: Rectangle): Rectangle instance
-
-        Raises:
-            TypeError: If rect_1 or rect_2 aren't instance of rectangle
-
-        Returns:
-            The biggest rectangle
-        """
         if type(rect_1) is not Rectangle:
             raise TypeError("rect_1 must be an instance of Rectangle")
         if type(rect_2) is not Rectangle:
             raise TypeError("rect_2 must be an instance of Rectangle")
         if rect_2.area() > rect_1.area():
             return rect_2
-        else:
-            return rect_1
+        return rect_1
 
     @classmethod
     def square(cls, size=0):
