@@ -23,7 +23,7 @@ class Rectangle:
             str: empty string if width or height is equal to 0
                 otherwise print the rectangle with the character #
         """
-        if self.__height != 0 or self.__width != 0:
+        if self.__height != 0 and self.__width != 0:
             for c in range(self.__height):
                 for r in range(self.__width):
                     print('#', end='')
