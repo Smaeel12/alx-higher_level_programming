@@ -34,8 +34,8 @@ def matrix_mul(m_a, m_b):
                 else:
                     for elist in row:
                         if type(elist) not in [int, float]:
-                            raise TypeError("m_a should contain only integers\
-                                    or floats")
+                            raise TypeError("m_a should contain only integers \
+or floats")
             elif type(row) is not list:
                 raise TypeError("m_a must be a list of lists")
             elif len(row) == 0:
