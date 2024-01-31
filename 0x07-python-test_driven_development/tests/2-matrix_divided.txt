@@ -18,6 +18,14 @@
 >>> matrix_divided([[9.4, 3.6, -1.2], [4.0, 1.6, 8], [1, 2, 3]], 2.0)
 [[4.7, 1.8, -0.6], [2.0, 0.8, 4.0], [0.5, 1.0, 1.5]]
 
+'scalar matrix'
+>>> matrix_divided([[3]], 3)
+[[1.0]]
+
+'div is a negative int'
+>>> matrix_divided([[3, 8], [12, 11]], -3)
+[[-1.0, -2.67], [-4.0, -3.67]]
+
 'div is a string'
 >>> matrix_divided([[9, 3, -1], [4, 1, 8], [1, 2, 3]], "Meco")
 Traceback (most recent call last):
