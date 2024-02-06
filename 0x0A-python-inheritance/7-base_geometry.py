@@ -21,8 +21,8 @@ class BaseGeometry:
             function that validates value
 
         Args:
-            name (str):
-            value (int):
+            name (str): the name
+            value (int): the value
 
         Raises:
             TypeError: if value is not an integer

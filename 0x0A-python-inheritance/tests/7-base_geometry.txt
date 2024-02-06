@@ -2,40 +2,77 @@ Testing the '7-base_geometry' module
 ====================================
 Tests for: 'BaseGeometry' class
 ------------------------------------
->>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
->>> base = BaseGeometry()
+>>> BaseGeometry = __import__("7-base_geometry").BaseGeometry
 
-'Test the area method'
->>> base.area()
+'module docstring'
+>>> m = __import__("7-base_geometry").__doc__
+>>> len(m) > 1
+True
+
+'class docstring'
+>>> c = __import__("7-base_geometry").BaseGeometry.__doc__
+>>> len(c) > 1
+True
+
+'method docstring for area'
+>>> f = __import__("7-base_geometry").BaseGeometry.area.__doc__
+>>> len(f) > 1
+True
+
+'method docstring for integer_validator'
+>>> f = __import__("7-base_geometry").BaseGeometry.integer_validator.__doc__
+>>> len(f) > 1
+True
+
+'first is string and second is integer'
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int", 12)
+
+'first is string and second is floating'
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int", 12.4)
 Traceback (most recent call last):
 ...
-Exception: area() is not implemented
+TypeError: my_int must be an integer
 
-'Valid Args'
->>> base.integer_validator("int", 5)
-
-'Invalid Args'
->>> base.integer_validator("name", "str")
+'first is string and second is string'
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int", "integer")
 Traceback (most recent call last):
 ...
-TypeError: name must be an integer
+TypeError: my_int must be an integer
 
->>> base.integer_validator("name", -12)
+'first is string and second is 0'
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int", 0)
 Traceback (most recent call last):
 ...
-ValueError: name must be greater than 0
+ValueError: my_int must be greater than 0
 
->>> base.integer_validator("name", [1, 2])
+'first is string and second is negative'
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int", -7)
 Traceback (most recent call last):
 ...
-TypeError: name must be an integer
+ValueError: my_int must be greater than 0
 
->>> base.integer_validator("name", {'key', 12})
+'Just one argument'
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("my_int")
 Traceback (most recent call last):
 ...
-TypeError: name must be an integer
+TypeError: integer_validator() missing 1 required positional argument: 'value'
 
->>> base.integer_validator("name", (1, 2))
+'Empty argument'
+>>> bg = BaseGeometry()
+>>> bg.integer_validator()
 Traceback (most recent call last):
 ...
-TypeError: name must be an integer
+TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+'more than two arguments'
+>>> bg = BaseGeometry()
+>>> bg.integer_validator("hello", 2, 3, 7)
+Traceback (most recent call last):
+...
+TypeError: integer_validator() takes 3 positional arguments but 5 were given
