@@ -28,11 +28,8 @@ class Student:
         Returns:
             str: the dictionary description
         """
-        s_dict = {}
-        if type(attrs) == list and type(attrs[0]) == str:
-            for key in attrs:
-                if hasattr(self, key):
-                    s_dict[key] = self.__dict__[key]
+        if attrs is not None:
+            return {key: value for key, value in self.__dict__.items()
+                    if key in attrs}
         else:
-            s_dict = self.__dict__
-        return dict(s_dict)
+            return dict(self.__dict__)
