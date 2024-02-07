@@ -16,4 +16,4 @@ def class_to_json(obj):
     Returns:
         str: the dictionary description
     """
-    return dict(obj.__dict__)
+    return {key: value for key, value in obj.__dict__.items()}
