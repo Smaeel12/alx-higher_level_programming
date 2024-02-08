@@ -4,7 +4,6 @@ This module contain a function that returns the dictionary description with
 simple data structure (list, dictionary, string, integer and boolean) for
 JSON serialization of an object:
 """
-import json
 
 
 def class_to_json(obj):
@@ -16,4 +15,4 @@ def class_to_json(obj):
     Returns:
         str: the dictionary description
     """
-    return {key: value for key, value in obj.__dict__.items()}
+    return dict(obj.__dict__)
