@@ -2,6 +2,8 @@
 """ This module contain the base model of classes
 """
 import json
+import csv
+import turtle
 
 
 class Base:
@@ -75,7 +77,7 @@ class Base:
         """
         if cls.__name__ == "Rectangle":
             new = cls(1, 1)
-        if cls.__name__ == "Square":
+        elif cls.__name__ == "Square":
             new = cls(1)
         new.update(**dictionary)
         return new
@@ -89,10 +91,46 @@ class Base:
         filename = cls.__name__ + ".json"
         ins_list = []
         try:
-            with open(filename) as file:
-                ins_list = cls.from_json_string(file.read())
+            with open(filename) as f:
+                ins_list = cls.from_json_string(f.read())
             for key, value in enumerate(ins_list):
                 ins_list[key] = cls.create(**ins_list[key])
+        except Exception:
+            pass
+        return ins_list
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """ writes the CSV string representation of list_objs
+        to a file
+        Args:
+            list_objs (list[obj]): list of objects
+        """
+        filename = cls.__name__ + '.csv'
+        with open(filename, 'w') as csv_file:
+            if len(list_objs) == 0:
+                return
+            fieldnames = list_objs[0].to_dictionary().keys()
+            csv_writer = csv.DictWriter(csv_file, fieldnames=fieldnames)
+            csv_writer.writeheader()
+            for obj in list_objs:
+                csv_writer.writerow(obj.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """
+        loads the CSV string representation of list_objs from a file
+        """
+        filename = cls.__name__ + ".csv"
+        ins_list = []
+        try:
+            with open(filename, 'r') as f:
+                csv_reader = csv.DictReader(f)
+                for line in csv_reader:
+                    for key in line:
+                        line[key] = int(line[key])
+                    new = cls.create(**line)
+                    ins_list.append(new)
         except Exception:
             pass
         return ins_list

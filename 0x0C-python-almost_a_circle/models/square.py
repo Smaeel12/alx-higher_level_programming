@@ -21,7 +21,7 @@ class Square(Rectangle):
         """ the string representation of the square class
         """
         return '[Square] ({}) {}/{} - {}'\
-            .format(self.id, self.x, self.y, self.width)
+            .format(self.id, self.x, self.y, self.size)
 
     @property
     def size(self):
@@ -43,11 +43,11 @@ class Square(Rectangle):
             *args: Variable length argument list.
             **kwargs: Arbitrary keyword arguments.
         """
-        if args != ():
+        if args:
             self.id = args[0]
-            self.size = args[1] if 1 < len(args) else self.width
-            self.x = args[2] if 2 < len(args) else self.height
-            self.y = args[3] if 3 < len(args) else self.x
+            self.size = args[1] if 1 < len(args) else self.__size
+            self.x = args[2] if 2 < len(args) else self.x
+            self.y = args[3] if 3 < len(args) else self.y
         elif kwargs is not None:
             for key, value in kwargs.items():
                 setattr(self, key, value)
