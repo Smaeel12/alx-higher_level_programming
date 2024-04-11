@@ -1,10 +1,9 @@
 #!/usr/bin/node
 
-let num1 = 0; let num2 = 0;
-for (const n of process.argv.slice(2)) {
-  if (num1 < n) {
-    num2 = num1;
-    num1 = n;
-  }
+const args = process.argv.slice(2).map(Number);
+if (args.length <= 1) {
+  console.log(0);
+} else {
+  const sortedArgs = args.sort((a, b) => b - a);
+  console.log(sortedArgs[1]);
 }
-console.log(num2);
