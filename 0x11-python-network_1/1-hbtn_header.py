@@ -7,4 +7,4 @@ if __name__ == "__main__":
 
     with ulib.urlopen(sys.argv[1]) as response:
         request_id = response.getheader("X-Request-Id")
-        print("X-Request-Id: {}".format(request_id))
+        print(request_id)
