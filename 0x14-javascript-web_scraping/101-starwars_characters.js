@@ -50,4 +50,3 @@ const main = async () => {
 
 // Call the main function
 main();
-
