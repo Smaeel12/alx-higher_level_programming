@@ -8,35 +8,46 @@ const movieId = process.argv[2];
 // Construct the API URL for the specified movie ID
 const apiUrl = `https://swapi-api.alx-tools.com/api/films/${movieId}/`;
 
-// Make a GET request to the Star Wars API endpoint for the specified movie ID
-request(apiUrl, (error, response, body) => {
-  if (error) {
-    console.error(error);
-  } else {
-    // Parse the response body
-    const film = JSON.parse(body);
-    // Extract the characters' URLs in the same order as they appear in the /films/ response
-    const charactersUrls = film.characters;
-
-    // Function to print characters' names in the correct order
-    printCharactersInOrder(charactersUrls);
-  }
-});
-
-// Function to print characters' names in the correct order
-function printCharactersInOrder(charactersUrls) {
-  // Iterate over the character URLs and make individual requests to get each character's details
-  charactersUrls.forEach(characterUrl => {
-    // Make a GET request to the character URL
-    request(characterUrl, (err, resp, characterBody) => {
-      if (err) {
-        console.error(err);
+// Function to make a request and retrieve character name
+const getCharacterName = async (characterUrl) => {
+  return new Promise((resolve, reject) => {
+    request(characterUrl, (error, response, body) => {
+      if (error) {
+        reject(error);
       } else {
-        // Parse the response body to extract character details
-        const character = JSON.parse(characterBody);
-        // Print the character's name
-        console.log(character.name);
+        const character = JSON.parse(body);
+        resolve(character.name);
       }
     });
   });
-}
+};
+
+// Main function to retrieve characters and print their names
+const main = async () => {
+  try {
+    const response = await new Promise((resolve, reject) => {
+      request(apiUrl, (error, response, body) => {
+        if (error) {
+          reject(error);
+        } else {
+          resolve(body);
+        }
+      });
+    });
+
+    const film = JSON.parse(response);
+    const charactersUrls = film.characters;
+
+    // Retrieve character names asynchronously and print them in order
+    for (const characterUrl of charactersUrls) {
+      const characterName = await getCharacterName(characterUrl);
+      console.log(characterName);
+    }
+  } catch (error) {
+    console.error('Error:', error);
+  }
+};
+
+// Call the main function
+main();
+
