@@ -1,134 +1,101 @@
-'Tests for the 0-add_integer module'
-====================================
-'Testing the function: add_integer'
-------------------------------------
+The '0-add_integer' module
+==========================
+
+Test the function: 'add_integer'
+--------------------------------
 
 >>> add_integer = __import__('0-add_integer').add_integer
 
-'positive integer values'
->>> add_integer(1, 23)
-24
+'Valid arguments'
+>>> add_integer(2, 4)
+6
 
-'negative integer values'
->>> add_integer(-3, -10)
--13
+>>> add_integer(-3, -4)
+-7
 
-'positive floating values'
->>> add_integer(5.8, 9.1)
-14
+>>> add_integer(2)
+100
 
-'negative floating values'
->>> add_integer(-2.9, -8.3)
--10
+>>> add_integer(93.5, -4)
+91
 
-'only one argument'
->>> add_integer(5)
-103
+>>> add_integer(2.2)
+100
 
-'b argument is empty'
->>> add_integer(5,)
-103
-
-'a is an integer and b is a string'
->>> add_integer(2, "Meco")
-Traceback (most recent call last):
+'Invalid arguments'
+'String arg'
+>>> add_integer(4, "alx")
+Traceback ('most recent call last'):
 ...
 TypeError: b must be an integer
 
-'b is an integer and a is a string'
->>> add_integer("Meco", 2)
-Traceback (most recent call last):
+>>> add_integer("alx", 4)
+Traceback ('most recent call last'):
 ...
 TypeError: a must be an integer
 
-'a and b empty'
->>> add_integer()
-Traceback (most recent call last):
-...
-TypeError: add_integer() missing 1 required positional argument: 'a'
-
-'a is a bool'
->>> add_integer(False, 4)
-Traceback (most recent call last):
+>>> add_integer("alx")
+Traceback ('most recent call last'):
 ...
 TypeError: a must be an integer
 
-'a is a tuple'
->>> add_integer((3, 5), 4)
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
-
-'a is a list'
->>> add_integer([3, 5], 4)
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
-
-'a is a dict'
->>> add_integer({3, 5}, 4)
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
-
-'b is a bool'
->>> add_integer(3, False)
-Traceback (most recent call last):
+'Bool arg'
+>>> add_integer(4, True)
+Traceback ('most recent call last'):
 ...
 TypeError: b must be an integer
 
-'b is a tuple'
->>> add_integer(2, (3, 5))
-Traceback (most recent call last):
+>>> add_integer(True)
+Traceback ('most recent call last'):
+...
+TypeError: a must be an integer
+
+'List arg'
+>>> add_integer(4, [3, 4])
+Traceback ('most recent call last'):
 ...
 TypeError: b must be an integer
 
-'b is a list'
->>> add_integer(5, [3, 5])
-Traceback (most recent call last):
+>>> add_integer([3, 4])
+Traceback ('most recent call last'):
+...
+TypeError: a must be an integer
+
+'Tuple arg'
+>>> add_integer(4, (3, 4))
+Traceback ('most recent call last'):
 ...
 TypeError: b must be an integer
 
-'b is a dict'
->>> add_integer(8, {3, 5})
-Traceback (most recent call last):
+>>> add_integer((3, 4))
+Traceback ('most recent call last'):
+...
+TypeError: a must be an integer
+
+'Infinite arg'
+>>> add_integer(4, float(inf))
+Traceback ('most recent call last'):
 ...
 TypeError: b must be an integer
 
-'a is an infinity float'
+>>> add_integer(float(inf))
+Traceback ('most recent call last'):
+...
+TypeError: a must be an integer
+
+'Not a number arg'
+>>> add_integer(4, float(NaN))
+Traceback ('most recent call last'):
+...
+TypeError: b must be an integer
+
+>>> add_integer(float(NaN))
+Traceback ('most recent call last'):
+...
+TypeError: a must be an integer
+
 >>> import sys
 >>> add_integer(sys.float_info.max + 1e292)
-Traceback (most recent call last):
+Traceback ('most recent call last'):
 ...
 TypeError: a must be an integer
-
-'b is an infinity float'
->>> import sys
->>> add_integer(3, sys.float_info.max + 1e292)
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
-
-'a is nan'
->>> add_integer(float('nan'))
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
-
-'b is nan'
->>> add_integer(3, float('nan'))
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
-
-'a is inf'
->>> add_integer(float('inf'))
-Traceback (most recent call last):
-...
-TypeError: a must be an integer
-
-'b is inf'
->>> add_integer(3, float('inf'))
-Traceback (most recent call last):
-...
-TypeError: b must be an integer
