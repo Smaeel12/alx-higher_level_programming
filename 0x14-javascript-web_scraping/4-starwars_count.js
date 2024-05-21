@@ -19,4 +19,3 @@ request.get(apiUrl, (error, response, body) => {
   const count = films.filter(film => film.characters.includes(`https://swapi-api.alx-tools.com/api/people/${characterId}/`)).length;
   console.log(count);
 });
-

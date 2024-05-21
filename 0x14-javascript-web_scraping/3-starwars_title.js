@@ -18,4 +18,3 @@ request.get(apiUrl, (error, response, body) => {
   const movie = JSON.parse(body);
   console.log(movie.title);
 });
-
