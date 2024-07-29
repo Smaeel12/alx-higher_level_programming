@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """ a module that defines a empty class """
 
@@ -23,7 +24,7 @@ class Square():
         """ Get and Set the size of the square
         """
         return self.__size
-    
+
     @size.setter
     def size(self, value):
         if not (isinstance(value, int)):
@@ -36,7 +37,7 @@ class Square():
         """ Calculate the area of a square
         """
         return self.__size * self.__size
-    
+
     def my_print(self):
         """ Prints in stdout the square with the character #
         """

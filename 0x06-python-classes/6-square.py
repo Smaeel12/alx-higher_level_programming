@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """ a module that defines a empty class """
 
@@ -17,17 +18,17 @@ class Square():
         if (size < 0):
             raise ValueError("size must be >= 0")
         self.__size = size
-        
+
         if not (isinstance(position, tuple)):
-            raise TypeError("position must be a tuple of 2 positive integers") 
-        self.__position =  position
+            raise TypeError("position must be a tuple of 2 positive integers")
+        self.__position = position
 
     @property
     def size(self):
         """ Get and Set the size of the square
         """
         return self.__size
-    
+
     @size.setter
     def size(self, value):
         if not (isinstance(value, int)):
@@ -35,13 +36,13 @@ class Square():
         if not (value > 0):
             raise ValueError("size must be >= 0")
         self.__size = value
-    
+
     @property
     def position(self):
         """ Get and Set the position
         """
         return self.__position
-    
+
     @position.setter
     def position(self, value):
         if not (isinstance(value, tuple)):
@@ -52,7 +53,7 @@ class Square():
         """ Calculate the area of a square
         """
         return self.__size * self.__size
-    
+
     def my_print(self):
         """ Prints in stdout the square with the character # and spaces
         """
