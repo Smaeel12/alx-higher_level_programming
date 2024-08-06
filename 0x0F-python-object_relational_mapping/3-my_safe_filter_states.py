@@ -1,21 +1,47 @@
 #!/usr/bin/python3
-# -*- coding: utf-8 -*-
-""" script that lists all states with a name starting with N (upper N)
-from the database hbtn_0e_0_usa
-"""
-import MySQLdb
 from sys import argv
+import MySQLdb
+"""
+script that takes in arguments and displays all values in the states table of
+hbtn_0e_0_usa where name matches the argument and safe from MySQL injections
 
-if __name__ == '__main__':
-    conn = MySQLdb.connect(host='localhost', port=3306,
-                           user=argv[1], passwd=argv[2],
-                           db=argv[3], charset='utf8')
+Here's another implementation using the escape_string method
+if __name__ == "__main__":
+    conn = MySQLdb.connect(host='localhost',
+                           port=3306,
+                           user=argv[1],
+                           passwd=argv[2],
+                           db=argv[3])
     cur = conn.cursor()
-    query = "SELECT * FROM states WHERE name LIKE BINARY %s ORDER BY id"
-    params = (argv[4],)
-    cur.execute(query, params)
-    query_rows = cur.fetchall()
-    for row in query_rows:
+
+    # Properly escape the input
+    state_name = conn.escape_string('Arizona').decode()
+    query = f"SELECT * FROM states WHERE name = '{state_name}'"
+    cur.execute(query)
+    rows = cur.fetchall()
+    for row in rows:
         print(row)
+
+   cur.close()
+    conn.close()
+"""
+if __name__ == "__main__":
+    conn = MySQLdb.connect(host='localhost',
+                           port=3306,
+                           user=argv[1],
+                           passwd=argv[2],
+                           db=argv[3])
+    cur = conn.cursor()
+
+    # Properly escape the input
+    state_name = conn.string_literal('Arizona').decode()
+    query = f"""SELECT * FROM states
+                WHERE name = {state_name}
+                ORDER BY states.id"""
+    cur.execute(query)
+    rows = cur.fetchall()
+    for row in rows:
+        print(row)
+
     cur.close()
     conn.close()
