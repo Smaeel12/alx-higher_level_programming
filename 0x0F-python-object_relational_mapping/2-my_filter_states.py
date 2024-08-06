@@ -15,9 +15,11 @@ if __name__ == "__main__":
     cur = conn.cursor()
 
     # we can use tuple, list or dictionary
-    cur.execute("""SELECT * FROM states
-                WHERE name = %(name)s
-                ORDER BY states.id""", {'name': argv[4]})
+    query = """SELECT * FROM states
+            WHERE name = '{name}'
+            ORDER BY states.id""".format(name=argv[4])
+
+    cur.execute(query)
 
     rows = cur.fetchall()
     for row in rows:

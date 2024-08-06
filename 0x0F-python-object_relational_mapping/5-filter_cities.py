@@ -25,6 +25,8 @@ if __name__ == "__main__":
 
     cursor.execute(query)
     rows = cursor.fetchall()
-    for row in rows[:-1]:
-        print(row[0], end=', ')
-    print(rows[-1][0])
+
+    if rows != () and rows is not None:
+        for row in rows[:-1]:
+            print(row[0], end=', ')
+        print(rows[-1][0])

@@ -37,7 +37,7 @@ if __name__ == "__main__":
     cur = conn.cursor()
 
     # Properly escape the input
-    state_name = conn.string_literal('Arizona').decode()
+    state_name = conn.string_literal(argv[4]).decode()
     query = f"""SELECT * FROM states
                 WHERE name = {state_name}
                 ORDER BY states.id"""
