@@ -16,7 +16,7 @@ if __name__ == "__main__":
 
     # we can use tuple, list or dictionary
     query = """SELECT * FROM states
-            WHERE name = '{name}'
+            WHERE name LIKE BINARY '{name}'
             ORDER BY states.id""".format(name=argv[4])
 
     cur.execute(query)

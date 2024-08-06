@@ -20,13 +20,15 @@ if __name__ == "__main__":
     query = f"""SELECT cities.name
                 FROM cities
                 WHERE cities.state_id = (SELECT id FROM states
-                WHERE states.name = {state_name})
+                WHERE states.name LIKE BINARY {state_name})
                 ORDER BY cities.id"""
 
     cursor.execute(query)
     rows = cursor.fetchall()
+    a_list = []
+    for row in rows:
+        a_list.append(row[0])
+    print(', '.join(a_list))
 
-    if rows != () and rows is not None:
-        for row in rows[:-1]:
-            print(row[0], end=', ')
-        print(rows[-1][0])
+    cursor.close()
+    db.close()
