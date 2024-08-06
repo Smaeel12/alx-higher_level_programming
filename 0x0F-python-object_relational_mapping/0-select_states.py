@@ -1,6 +1,11 @@
 #!/usr/bin/python3
+# -*- coding: utf-8 -*-
+"""
+script that lists all states from the database hbtn_0e_0_usa
+"""
 from sys import argv
 import MySQLdb
+
 
 if __name__ == "__main__":
     conn = MySQLdb.connect(host='localhost',

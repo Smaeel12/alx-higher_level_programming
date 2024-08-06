@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-from sys import argv
-import MySQLdb
+# -*- coding: utf-8 -*-
 """
 script that takes in arguments and displays all values in the states table of
 hbtn_0e_0_usa where name matches the argument and safe from MySQL injections
@@ -25,6 +24,10 @@ if __name__ == "__main__":
    cur.close()
     conn.close()
 """
+from sys import argv
+import MySQLdb
+
+
 if __name__ == "__main__":
     conn = MySQLdb.connect(host='localhost',
                            port=3306,
