@@ -1,10 +1,10 @@
 #!/usr/bin/node
-
-const num = Number(process.argv[2]);
-if (isNaN(num)) {
-  console.log('Missing number of occurrences');
-} else {
-  for (let i = 0; i < num; i++) {
+let x = Number(process.argv[2]);
+if (x) {
+  while (x > 0) {
     console.log('C is fun');
+    x--;
   }
+} else {
+  console.log('Missing number of occurrences');
 }
