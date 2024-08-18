@@ -1,8 +1,5 @@
 #!/usr/bin/node
-
-let numArguments = 0;
-
 exports.logMe = function (item) {
-  console.log(numArguments + ': ' + item);
-  numArguments++;
+  this.nb = (this.nb || 0) + 1;
+  console.log(this.nb - 1, ': ', item);
 };
