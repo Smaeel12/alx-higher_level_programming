@@ -4,4 +4,6 @@ if (x) {
   for (let a = 0; a < x; a++) {
     console.log('X'.repeat(x));
   }
+} else {
+  console.log('Missing size');
 }
