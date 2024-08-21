@@ -1,21 +1,21 @@
 #!/usr/bin/node
-/* A script that calculates the tasks completed for each user. */
-const url = process.argv.slice(2)[0];
 const request = require('request');
-request(url, (error, response, body) => {
-  if (error) { return; }
-  const data = JSON.parse(body);
-  const usersTasks = {};
-  if (!data || !data.length) {
-    console.log(usersTasks);
-    return;
-  }
-  for (const dict of data) {
-    const userId = dict.userId;
-    if (dict.completed) {
-      if (usersTasks[userId]) usersTasks[userId]++;
-      else usersTasks[userId] = 1;
-    }
-  }
-  console.log(usersTasks);
+
+request.get(process.argv[2], function (err, response, body) {
+  if (err) throw new Error(err);
+  const tasks = JSON.parse(body);
+  console.log(tasks.reduce(function (total, item) {
+    if (item.completed) { total[item.userId] = (total[item.userId] || 0) + 1; }
+    return total;
+  }, {}));
 });
+
+// request.get(process.argv[2], function (err, response, body) {
+//     tasks = JSON.parse(body)
+//     let users = {}
+//     for (task of tasks)
+//         if (task.completed === true) {
+//             users[task.userId] = (users[task.userId] + 1) || 1
+//         }
+//     console.log(users)
+// })
