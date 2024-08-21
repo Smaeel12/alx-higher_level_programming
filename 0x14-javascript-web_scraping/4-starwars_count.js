@@ -7,7 +7,7 @@ request(process.argv[2], function (error, response, body) {
   let num = 0;
   for (const film of JSON.parse(body).results) {
     for (const character of film.characters) {
-      num += (character.includes(find) ? 1 : 0);
+      num += (character.endsWith(find) ? 1 : 0);
     }
   }
   console.log(num);
