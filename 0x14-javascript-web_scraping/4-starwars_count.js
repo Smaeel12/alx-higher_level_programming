@@ -1,13 +1,14 @@
 #!/usr/bin/node
+// makes get request for SW movie id
 const request = require('request');
 
-request.get(process.argv[2], function (err, response, body) {
-  err && console.log(err);
+request(process.argv[2], function (error, response, body) {
+  if (error) throw new Error(error);
   let count = 0;
   for (const film of JSON.parse(body).results) {
-    film.characters.forEach(element => {
-      if (element.includes('/18/')) count++;
-    });
+    for (const character of film.characters) {
+      if (character.includes('/18/')) count++;
+    }
   }
   console.log(count);
 });
