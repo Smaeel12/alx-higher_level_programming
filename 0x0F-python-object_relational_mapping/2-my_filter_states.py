@@ -10,8 +10,9 @@ if __name__ == '__main__':
     cur = conn.cursor()
     query = "SELECT * FROM states WHERE name='{}' ORDER BY states.id".format(
         argv[4])
-    cur.execute(query)
-    print(*cur.fetchall(), sep='\n')
+    n = cur.execute(query)
+    if (n):
+        print(*cur.fetchall(), sep='\n')
 
     cur.close()
-conn.close()
+    conn.close()
