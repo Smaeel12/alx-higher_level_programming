@@ -10,7 +10,7 @@ if __name__ == '__main__':
     conn = connect(user=argv[1], passwd=argv[2], db=argv[3])
     cur = conn.cursor()
     n = cur.execute(
-        "SELECT * FROM states WHERE name LIKE 'N%' ORDER BY states.id")
+        "SELECT * FROM states WHERE name LIKE BINARY 'N%' ORDER BY states.id")
     if (n):
         print(*cur.fetchall(), sep='\n')
 

@@ -8,8 +8,8 @@ if __name__ == '__main__':
 
     conn = connect(user=argv[1], passwd=argv[2], db=argv[3])
     cur = conn.cursor()
-    query = "SELECT * FROM states WHERE name='{}' ORDER BY states.id".format(
-        argv[4])
+    query = "SELECT * FROM states WHERE BINARY name='{}'\
+        ORDER BY states.id".format(argv[4])
     n = cur.execute(query)
     if (n):
         print(*cur.fetchall(), sep='\n')
